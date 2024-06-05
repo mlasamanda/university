@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('dob')->nullable();
             $table->string('email')->nullable()->unique();
             $table->integer('roleid')->unsigned()->nullable();
+            $table->integer('permissionid')->nullable();
             $table->string('gender')->nullable();
             $table->string('regno')->nullable()->unique();
             $table->integer('departmentid')->nullable();

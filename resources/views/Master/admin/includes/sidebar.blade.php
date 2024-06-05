@@ -81,13 +81,12 @@
                             <i class="fa fa-baby-carriage"></i>
                             <p>Course</p>
                         </a>
-                        <ul class="nav-item">
+                        <li class="nav-item">
                             <a href="{{route('assign.course')}}" class="nav-link">
                                 <i class="fa fa-edit"></i>
                                 <p>Assign Course</p>
                             </a>
-                        </ul>
-                    </li>
+                        </li>
 
                 </ul>
             <li class="nav-item">

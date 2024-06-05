@@ -16,7 +16,9 @@ class AssignCourse extends Model
             ->join('programmes as p','p.id','=','ac.programmeid')
             ->join('courses as c','c.id','=','ac.courseid')
             ->join('semesters as s','s.id','=','ac.semesterid')
+            ->groupBy('ac.semesterid')
+            ->orderBy('ac.semesterid')
             ->select(['ac.*','p.name as pname','c.name as cname','c.credit as ccredit','c.code as ccode'
-            ,'s.name as sename']);
+            ,'s.name as sename','s.yOfStudy as syofstudy']);
     }
 }

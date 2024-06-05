@@ -17,11 +17,14 @@
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         @include('master.admin.includes.header')    <!-- /.navbar -->
     </nav>
+    @if(\Illuminate\Support\Facades\Auth::user()->roles()->name='admin')
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            @include('master.admin.includes.sidebar')
+        </aside>
+
+    @endif
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        @include('master.admin.includes.sidebar')
-    </aside>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

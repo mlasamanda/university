@@ -13,9 +13,9 @@
                     <thead>
                     <tr>
                         <th>S/N</th>
+                        <th>Programme Code</th>
                         <th>Programme Name</th>
                         <th>Department Name</th>
-                        <th>Programme Code</th>
                         <th>programme Duration</th>
                         <th>Tuition Fees</th>
                         <th></th>
@@ -26,9 +26,9 @@
                     @foreach($programmes as $p)
                         <tr>
                             <td>{{$count++}}</td>
+                            <td>{{$p->pcode}}</td>
                             <td>{{$p->name}}</td>
                             <td>{{$p->dname}}</td>
-                            <td>{{$p->pcode}}</td>
                             <td>{{$p->duration}}</td>
                             <td>{{$p->tutionfees}}</td>
                             <td>
@@ -46,9 +46,9 @@
                     <tfoot>
                     <tr>
                         <th>S/N</th>
+                        <th>Programme Code</th>
                         <th>Programme Name</th>
                         <th>Department Name</th>
-                        <th>Programme Code</th>
                         <th>programme Duration</th>
                         <th>Tuition Fees</th>
                         <th></th>

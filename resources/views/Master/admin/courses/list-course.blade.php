@@ -13,10 +13,10 @@
                     <thead>
                     <tr>
                         <th>S/N</th>
+                        <th>Course Code</th>
                         <th>Course Name</th>
                         <th>Department Name</th>
                         <th>Credit</th>
-                        <th>Course Code</th>
                          <th></th>
                     </tr>
                     </thead>
@@ -25,10 +25,10 @@
                     @foreach($courses as $p)
                         <tr>
                             <td>{{$count++}}</td>
+                            <td>{{$p->code}}</td>
                             <td>{{$p->name}}</td>
                             <td>{{$p->dname}}</td>
                             <td>{{$p->credit}}</td>
-                            <td>{{$p->code}}</td>
                              <td>
                                 <form action="{{route('course.destroy',$p->id)}}" method="post" class="m-0 p-0"
                                       onsubmit="return confirm('Do you want to delete this department ?')">

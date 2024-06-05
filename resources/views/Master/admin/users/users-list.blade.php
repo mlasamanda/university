@@ -5,7 +5,9 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">User List</h3>
-                <li class="breadcrumb float-sm-right"><a href="{{route('user.create')}}">Add User</a></li>
+                @if(\Illuminate\Support\Facades\Gate::allows('action',\App\Models\Master\Permission::add_user))
+                    <li class="breadcrumb float-sm-right"><a href="{{route('user.create')}}">Add User</a></li>
+                @endif
             </div>
             <!-- /.card-header -->
             <!-- /.card-header -->
@@ -32,6 +34,7 @@
                     </thead>
                     <tbody>
                     @php($count=1)
+                    @php($CAN_EDIT = \Illuminate\Support\Facades\Gate::allows(\App\Models\Master\Permission::edit_user))
                     @foreach($users as $u)
                         <tr>
                             <td>{{$count++}}</td>

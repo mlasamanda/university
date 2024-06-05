@@ -39,6 +39,7 @@ class User extends Authenticatable
     {
         return DB::table('users', 'u')
             ->join('roles as r', 'r.id', '=', 'u.roleid')
+            ->join('permissions as p','p.id','=','u.permissionid')
             ->join('departments as d', 'd.id', '=', 'u.departmentid')
             ->select(['u.*', 'r.name as rolename','d.name as departmentname'])
             ->selectRaw("concat(u.fname,' ',u.lname) as fullname")

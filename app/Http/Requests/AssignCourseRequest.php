@@ -26,13 +26,15 @@ class AssignCourseRequest extends FormRequest
         $rules = [
             'course.courseid' => 'required',
             'course.programmeid' => 'required',
+            'course.semesterid' => 'required',
          ];
         $request = Request::capture();
         $departmentarray = $request->get('course');
         if (empty($departmentarray['id'])) {//new
-            $rules['course.courseid'] = ['required', Rule::unique('courses', 'name')];
+            $rules['course.courseid'] = ['required',
+                Rule::unique('assign_courses', 'programmeid')];
         } else {//update
-            $rules['course.courseid'] = ['required', Rule::unique('courses', 'name')->ignore($departmentarray['id'])];
+            $rules['course.courseid'] = ['required', Rule::unique('assign_courses', 'name')->ignore($departmentarray['id'])];
 
         }
 
@@ -44,7 +46,8 @@ class AssignCourseRequest extends FormRequest
     {
         return [
             'course.courseid.required' => 'course name is required',
-            'course.programmeid.required' => 'Department name is required',
+            'course.programmeid.required' => 'Programme name is required',
+            'course.semesterid.required' => 'Semester name is required',
          ];
     }
 }

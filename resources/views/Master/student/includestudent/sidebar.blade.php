@@ -53,7 +53,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('assign.course')}}" class="nav-link">
                             <i class="fa fa-baby"></i>
                             <p>Courses</p>
                         </a>
