@@ -53,6 +53,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+<script src="{{ URL::asset('asset/js/initusablefunction.js') }}"></script>
 @include('master.admin.includes.footerscript')
 </body>
 </html>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Master\ProgrammeController;
 use App\Http\Controllers\Master\RoleController;
 use App\Http\Controllers\Master\StudentController;
 use App\Http\Controllers\Master\UserController;
+use App\Http\Controllers\Student\CourseWorkController;
 use App\Http\Controllers\StudentDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,7 @@ Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('dashb
 Route::get('/admin/profile',[AdminController::class,'profile'])->name('admin.profile');
 
 //users route
-Route::get('/user/list',[UserController::class,'index'])->name('user.list');
+Route::get('/user/list',[UserController::class,'index'])->name('users');
 Route::get('/user/create',[UserController::class,'create'])->name('user.create');
 Route::post('/user/store',[UserController::class,'store'])->name('user.store');
 Route::get('/user/edit/{id}',[UserController::class,'edit'])->name('user.edit');
@@ -67,3 +68,8 @@ Route::post('/assign/store',[AssignCourseController::class,'store'])->name('assi
 
 //student
 Route::get('student/detail',[StudentDetailController::class,'index'])->name('student.detail');
+//coursework
+Route::get('/coursework',[CourseWorkController::class,'index'])->name('coursework.list');
+Route::get('/create/coursework',[CourseWorkController::class,'create'])->name('coursework.create');
+Route::get('/edit/coursework/{courseworkid}',[CourseWorkController::class,'edit'])->name('coursework.edit');
+Route::post('/save/coursework',[CourseWorkController::class,'store'])->name('coursework.store');

@@ -1,4 +1,4 @@
-@extends('master.admin.homeDashboard')
+@extends('master.student.student-list')
 @section('content')
     <div class="col-12">
         <!-- /.card -->

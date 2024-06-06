@@ -9,6 +9,8 @@ use App\Models\Master\Menu;
 use App\Models\Master\Permission;
 use App\Models\Master\Programme;
 use App\Models\Master\Role;
+use App\Models\Master\RoleMenu;
+use App\Models\Master\RolePermission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +41,30 @@ class UserController extends Controller
      */
     public function edit( $userid)
     {
+        $role=null;
         //Gate::authorize('action',Permission::edit_user);
+        $replicateid = Request::capture()->get('replicateid');
+        if ($replicateid) {
+            $replicaterole = Role::query()->find($replicateid);
+            $replicaterole->submenus = RoleMenu::query()->where('roleid', $replicateid)->pluck('submenuid');
+            $replicaterole->permissions = RolePermission::query()->where('roleid', $replicateid)->pluck('permissionid');
+
+            if ($role == null)
+                $role = new Role();
+
+            $role->id ?
+                $role->name = $role->name
+                : $role->name = \request()->get('name');
+
+            $role->id ?
+                $role->submenus = $role->submenus->merge($replicaterole->submenus)
+                : $role->submenus = $replicaterole->submenus;
+            $role->id ?
+                $role->permissions = $role->permissions->merge($replicaterole->permissions)
+                : $role->permissions = $replicaterole->permissions;
+//            return \request();
+        }
+
         $user = User::list()->where('u.id', $userid)->first();
         if(!$user) return back()->with('error','User not found');
         $roles = Role::all();
@@ -63,7 +88,7 @@ class UserController extends Controller
             $userarray['updated_by'] = Auth::id();
             $user->update($userarray);
         }
-        return redirect()->route('user.list')->with('success', 'User saved!');
+        return redirect()->route('users')->with('success', 'User saved!');
     }
 
     public function destroy(string $id)

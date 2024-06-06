@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('coursework.list')}}" class="nav-link">
                             <i class="fa fa-baby-carriage"></i>
                             <p>Course Work(CW)</p>
                         </a>
