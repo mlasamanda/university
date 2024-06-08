@@ -43,6 +43,7 @@ class LoginController extends Controller
 
         $rolename = $user->roles()->pluck('name');
         if ($rolename->contains('admin')) {
+            mail('sayimlasa2021@gmail.com', 'Login Successful', 'Hi Welcome');
             return redirect()->intended(route('admin.profile'));
         } else {
             return redirect()->intended(route('student.detail'));
