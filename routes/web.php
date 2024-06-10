@@ -10,6 +10,7 @@ use App\Http\Controllers\Master\RoleController;
 use App\Http\Controllers\Master\StudentController;
 use App\Http\Controllers\Master\UserController;
 use App\Http\Controllers\Student\CourseWorkController;
+use App\Http\Controllers\Student\ResultController;
 use App\Http\Controllers\StudentDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -73,3 +74,10 @@ Route::get('/coursework',[CourseWorkController::class,'index'])->name('coursewor
 Route::get('/create/coursework',[CourseWorkController::class,'create'])->name('coursework.create');
 Route::get('/edit/coursework/{courseworkid}',[CourseWorkController::class,'edit'])->name('coursework.edit');
 Route::post('/save/coursework',[CourseWorkController::class,'store'])->name('coursework.store');
+
+//results
+Route::get('/results',[ResultController::class,'index'])->name('result.list');
+Route::get('/create/result',[ResultController::class,'create'])->name('result.create');
+Route::get('/edit/result/{resultid}',[ResultController::class,'edit'])->name('result.edit');
+Route::post('/save/result',[ResultController::class,'store'])->name('result.store');
+Route::get('/result/delete/{resultid}',[ResultController::class,'destroy'])->name('result.delete');

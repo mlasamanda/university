@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->string('mark')->nullable();
-            $table->integer('courserid')->nullable();
+             $table->string('mark')->nullable();
+            $table->integer('courseid')->nullable();
             $table->integer('programmeid')->nullable();
             $table->integer('semesterid')->nullable();
             $table->integer('courseworkid')->nullable();

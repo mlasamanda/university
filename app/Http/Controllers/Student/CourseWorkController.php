@@ -47,8 +47,15 @@ class CourseWorkController extends Controller
     {
         $departmentarray = $request->get('course');
         if (empty($departmentarray['id'])) {//new
-            $departmentarray['created_by'] = Auth::id();
-            CourseWork::query()->create($departmentarray);
+            if($departmentarray['name']>15) {
+                $departmentarray['status'] ="pass";
+                $departmentarray['created_by'] = Auth::id();
+                CourseWork::query()->create($departmentarray);
+            }else{
+                $departmentarray['status'] ="Failed";
+                $departmentarray['created_by'] = Auth::id();
+                CourseWork::query()->create($departmentarray);
+            }
         } else {//update
             $course = CourseWork::query()->find($departmentarray['id']);
             if (!$course) redirect()->back()->with('error', 'Course not found');

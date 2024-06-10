@@ -100,6 +100,9 @@
             $(form).find('.save-spinner').show();
             $(form).find('.save-btn').prop('disabled', true);
         }
+        .result{
+
+        }
     </script>
 
 

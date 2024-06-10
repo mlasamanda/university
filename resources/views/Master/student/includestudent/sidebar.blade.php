@@ -66,7 +66,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('result.list')}}" class="nav-link">
                             <i class="fa fa-baby-carriage"></i>
                             <p>Semester Result(SE)</p>
                         </a>
