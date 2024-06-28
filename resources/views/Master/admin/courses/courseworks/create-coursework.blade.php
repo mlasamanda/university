@@ -27,7 +27,7 @@
                         <div>
                             <label for="courseid" class="form-label">Course Name</label>
                             <select id="courseid" name="course[courseid]" class="form-select form-control" required readonly>
-                                <option value="">--select Course--</option>
+                                <option value=""></option>
                                 @foreach($courses as $p)
                                     <option
                                         {{selected(isset($course)?$course->courseid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}</option>
@@ -46,11 +46,12 @@
                     <div class="col-md-6">
                         <div>
                             <label for="programmeid" class="form-label">Programme Name</label>
-                            <select id="programmeid" name="course[programmeid]" class="form-select form-control" required readonly>
-                                <option value="">--select Department--</option>
+                            <select id="selected" name="course[programmeid]" class="form-select form-control" required readonly>
+                                <option value=""></option>
                                 @foreach($programmes as $p)
                                     <option
-                                        {{selected(isset($course)?$course->programmeid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}</option>
+                                        {{selected(isset($course)?$course->programmeid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -59,7 +60,7 @@
                         <div>
                             <label for="semesterid" class="form-label">Semester</label>
                             <select id="semesterid" name="course[semesterid]" class="form-select form-control" required readonly>
-                                <option value="">--select semester--</option>
+                                <option value=""></option>
                                 @foreach($semester as $p)
                                     <option
                                         {{selected(isset($course)?$course->semesterid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}</option>
@@ -82,6 +83,5 @@
                 </div>
             </form>
         </div>
-
 @endsection
 

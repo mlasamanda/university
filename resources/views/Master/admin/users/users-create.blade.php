@@ -82,7 +82,7 @@
                         <div>
                             <label for="roleid" class="form-label">Role</label>
                             <select id="roleid" name="user[roleid]" class="form-select form-control" required readonly>
-                                <option value="">--select role--</option>
+                                <option value=""></option>
                                 @foreach($roles as $r)
                                     <option
                                         {{selected(isset($user)?$user->roleid:'',$r->id)}} value="{{$r->id}}">{{$r->name}}</option>
@@ -90,14 +90,27 @@
                             </select>
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div>
                             <label for="departmentid" class="form-label">Department Name</label>
                             <select id="departmentid" name="user[departmentid]" class="form-select form-control" required readonly>
-                                <option value="">--select Department--</option>
+                                <option value=""></option>
                                 @foreach($departments as $p)
                                     <option
                                         {{selected(isset($user)?$user->departmentid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <label for="programmeid" class="form-label">Programme Name</label>
+                            <select id="programmeid" name="user[programmeid]" class="form-select form-control" required readonly>
+                                <option value=""></option>
+                                @foreach($programmes as $p)
+                                    <option
+                                        {{selected(isset($user)?$user->programmeid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -108,7 +121,7 @@
                         <div class="form-group">
                             <label for="gender" class="form-label">Gender</label>
                             <select id="gender" name="user[gender]" class="form-select form-control" required>
-                                <option value="">--select gender--</option>
+                                <option value=""></option>
                                 <option
                                     {{selected(isset($user)?$user->gender:'',\App\Models\User::GENDER_MALE)}} value="{{\App\Models\User::GENDER_MALE}}">{{\App\Models\User::GENDER_MALE}}</option>
                                 <option
@@ -117,74 +130,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-2">
-                    <button type="button" class="btn btn-primary" onclick="checkitems(true)"><i
-                            class="ri-check-line"></i> check all
-                    </button>
-                    <button type="button" class="btn btn-dark" onclick="checkitems(false)"><i
-                            class="ri-close-line"></i> uncheck all
-                    </button>
-                </div>
-                <table id="" class="table nowrap align-middle table-sm table-bordered" style="width:100%;">
-                    <thead>
-                    <tr>
-                        <th>Menu</th>
-                        <th style="width: 40%">Submenu</th>
-                        <th style="width: 45%">Permission</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @php($count=1)
-                    @foreach($menus as $m)
-                        <tr>
-                            <td class="fs-3" style="vertical-align: middle">
-                                <label class="form-check-label hstack gap-1 align-items-center">
-                                    <span>{{$count++}}. {{$m->label}}</span>
-                                    <input class="flex-shrink-0 me-2" type="checkbox"
-                                           onchange="menuchecked(this)"
-                                           style="height: 25px;width: 25px;">
-                                </label>
-                            </td>
-                            <td style="vertical-align: top">
-                                @foreach($m->submenus->chunk(3) as $chunk)
-                                    <div class="row mb-1">
-                                        @foreach($chunk as $s)
-                                            <div class="col-lg-4">
-                                                <label class="form-check-label hstack align-items-center">
-                                                    <input class="flex-shrink-0 me-2" type="checkbox"
-                                                           name="submenus[]" value="{{$s->id}}"
-                                                           {{isset($role)&&$role->submenus->contains($s->id)?'checked':''}}
-                                                           style="height: 15px;width: 15px;">
-                                                    <span>{{$s->label}}</span>
-                                                </label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                            </td>
-                            <td>
-                                @foreach($m->permissions->chunk(3) as $chunk)
-                                    <div class="row mb-1">
-                                        @foreach($chunk as $p)
-                                            <div class="col-lg-4">
-                                                <label class="form-check-label hstack align-items-center"
-                                                       data-bs-toggle="tooltip" data-bs-placement="left"
-                                                       title="{{$p->description}}">
-                                                    <input class="flex-shrink-0 me-2" type="checkbox"
-                                                           name="user[permissionid]" value="{{$p->id}}"
-                                                           {{isset($role)&&$role->permissions->contains($p->id)?'checked':''}}
-                                                           style="height: 15px;width: 15px;">
-                                                    <span>{{$p->label}}</span>
-                                                </label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+
                 <div class="d-flex justify-content-center mt-5">
                 <div class="d-flex justify-content-center mt-5 pb-3">
                     <button class="btn btn-success btn-load btn-lg save-btn" type="submit">
@@ -195,7 +141,7 @@
                                 </span>
                     </button>
                 </div>
-            </form>
+                </div>
             </form>
         </div>
 

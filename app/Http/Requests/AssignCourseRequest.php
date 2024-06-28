@@ -32,9 +32,9 @@ class AssignCourseRequest extends FormRequest
         $departmentarray = $request->get('course');
         if (empty($departmentarray['id'])) {//new
             $rules['course.courseid'] = ['required',
-                Rule::unique('assign_courses', 'programmeid')];
+                Rule::unique('assign_courses', 'courseid')];
         } else {//update
-            $rules['course.courseid'] = ['required', Rule::unique('assign_courses', 'name')->ignore($departmentarray['id'])];
+            $rules['course.courseid'] = ['required', Rule::unique('assign_courses', 'courseid')->ignore($departmentarray['id'])];
 
         }
 

@@ -5,9 +5,11 @@ use App\Http\Controllers\Master\AssignCourseController;
 use App\Http\Controllers\Master\CourseController;
 use App\Http\Controllers\Master\DashboardController;
 use App\Http\Controllers\Master\DepartmentController;
+use App\Http\Controllers\master\HodController;
 use App\Http\Controllers\Master\ProgrammeController;
 use App\Http\Controllers\Master\RoleController;
 use App\Http\Controllers\Master\StudentController;
+use App\Http\Controllers\master\TeacherController;
 use App\Http\Controllers\Master\UserController;
 use App\Http\Controllers\Student\CourseWorkController;
 use App\Http\Controllers\Student\ResultController;
@@ -81,3 +83,9 @@ Route::get('/create/result',[ResultController::class,'create'])->name('result.cr
 Route::get('/edit/result/{resultid}',[ResultController::class,'edit'])->name('result.edit');
 Route::post('/save/result',[ResultController::class,'store'])->name('result.store');
 Route::get('/result/delete/{resultid}',[ResultController::class,'destroy'])->name('result.delete');
+Route::get('/result/getAjax',[ResultController::class,'getAjax'])->name('result.getAjax');
+
+//hod controller
+Route::get('/hod/',[HodController::class,'index'])->name('hod.index');
+//teacher Controller
+Route::get('/teacher/',[TeacherController::class,'index'])->name('teacher.index');

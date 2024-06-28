@@ -38,6 +38,7 @@ class LoginController extends Controller
         $request->session()->flash('status', 'You are logged in!');
          $request->session()->put('user_email', $user->email);
         $request->session()->put('user_regno', $user->regno);
+        $request->session()->put('userid', $user->id);
         $request->session()->put('user_mobile',$user->mobileno);
          // You can also flash data to the session
 
@@ -45,8 +46,17 @@ class LoginController extends Controller
         if ($rolename->contains('admin')) {
             mail('sayimlasa2021@gmail.com', 'Login Successful', 'Hi Welcome');
             return redirect()->intended(route('admin.profile'));
-        } else {
+        } else if ($rolename->contains('student')) {
             return redirect()->intended(route('student.detail'));
+        }
+        else if ($rolename->contains('hod')) {
+            return redirect()->intended(route('hod.index'));
+        }
+        else if ($rolename->contains('teacher')) {
+            return redirect()->intended(route('teacher.index'));
+        }
+        else{
+            return redirect()->intended(route('home'));
         }
 
     }

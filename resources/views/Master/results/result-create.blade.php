@@ -58,7 +58,7 @@
                     <div class="col-md-6">
                         <div>
                             <label for="semesterid" class="form-label">Semester</label>
-                            <select id="semesterid" name="course[semesterid]" class="form-select form-control" required readonly>
+                            <select id="semesterid" name="course[semesterid]" class="form-select form-control" required>
                                 <option value="">--select semester--</option>
                                 @foreach($semester as $p)
                                     <option
@@ -70,11 +70,11 @@
                     <div class="col-md-6">
                         <div>
                             <label for="courseworkid" class="form-label">Coursework</label>
-                            <select id="semesterid" name="course[courseworkid]" class="form-select form-control" required readonly>
+                            <select id="courseworkid" name="course[courseworkid]" class="form-select form-control" required readonly>
                                 <option value="">--select semester--</option>
                                 @foreach($coursework as $p)
                                     <option
-                                        {{selected(isset($course)?$course->semesterid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}</option>
+                                        {{selected(isset($course)?$course->$courseworkid:'',$p->id)}} value="{{$p->id}}">{{$p->name}}</option>
                                 @endforeach
                             </select>
                         </div>

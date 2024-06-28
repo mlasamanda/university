@@ -14,9 +14,10 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( Request $request )
     {
-        $courses = Course::list()->get();
+        $userid = $request->session()->get('userid');
+        $courses = Course::list()->where('courses.userid',$userid)->get();
         return view('master.admin.courses.list-course', compact('courses'));
     }
 
@@ -41,6 +42,7 @@ class CourseController extends Controller
         $departmentarray = $request->get('course');
         if (empty($departmentarray['id'])) {//new
             $departmentarray['created_by'] = Auth::id();
+            $departmentarray['userid'] = $request->session()->get('userid');
             Course::query()->create($departmentarray);
         } else {//update
             $course = Course::query()->find($departmentarray['id']);

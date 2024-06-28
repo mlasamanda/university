@@ -1,4 +1,4 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -54,7 +54,12 @@
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
-<!-- Page specific script -->
+<!-- CDN Link for Select2 CSS -->
+<link rel="stylesheet" href="{{asset('asset/css/select2.css')}}">
+<!-- CDN Link for jQuery (required for Select2) -->
+<script src="{{asset('asset/js/jquery-3.6.0.min.js')}}"></script>
+<!-- CDN Link for Select2 JS -->
+<script src="{{asset('asset/js/select2.js')}}"></script>
 <script>
     $(function () {
         $("#example1").DataTable({
@@ -74,35 +79,96 @@
 </script>
 
 //check and uncheck
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
+    function replicaterole() {
+        let replicateid = $('#replicate').val();
+        let name = $('#name').val();
+        let url = `{{route('role.create',isset($role)?$role->id:'')}}/?name=${name}&replicateid=${replicateid}`;
+        // console.log(url);
+        window.location.replace(url);
+    }
+
+    function checkitems(check) {
+        $('input:checkbox').prop('checked', check);
+    }
+
+    function menuchecked(menu) {
+        $(menu).closest('tr').find('input:checkbox').prop('checked', $(menu).is(':checked'));
+    }
+
+    function validateforminputs(form) {
+        $(form).find('.save-spinner').show();
+        $(form).find('.save-btn').prop('disabled', true);
+    }
+
+</script>
+<script>
+    function total_grade() {
+        $(document).ready(function () {
+            $.ajax({
+                url: '/result/getAjax',
+                type: 'GET',
+                success: function (response) {
+                    console.log(response); // Handle the response here, like updating UI with the fetched data
+                },
+                error: function (xhr) {
+                    console.error(xhr.responseText); // Handle any errors
+                }
+            }
+        });
+    }
+
+    )
+    ;
+</script>
+{{--total marks--}}
+<script>
+    $(document).ready(function () {
+
+        var grandTotal = 0;
+        var Totalcredit = 0;
+        var gpa;
+        $('#marksTable tbody tr').each(function () {
+            var total = 0;
+            var credit = 0;
+            $(this).find('.marks').each(function () {
+                var mark = parseFloat($(this).text());
+                if (!isNaN(mark)) {
+                    total += mark;
+                }
+            });
+            $(this).find('.credit').each(function () {
+                var tcredit = parseFloat($(this).text());
+                if (!isNaN(tcredit)) {
+                    credit += tcredit;
+                }
+            });
+            $(this).find('.total').text(total);
+            grandTotal += total;
+            $(this).find('.total').text(total);
+            Totalcredit += credit;
+            gpa=grandTotal/Totalcredit
+
         });
 
-        function replicaterole() {
-            let replicateid = $('#replicate').val();
-            let name = $('#name').val();
-            let url = `{{route('role.create',isset($role)?$role->id:'')}}/?name=${name}&replicateid=${replicateid}`;
-            // console.log(url);
-            window.location.replace(url);
-        }
-
-        function checkitems(check) {
-            $('input:checkbox').prop('checked', check);
-        }
-
-        function menuchecked(menu) {
-            $(menu).closest('tr').find('input:checkbox').prop('checked', $(menu).is(':checked'));
-        }
-
-        function validateforminputs(form) {
-            $(form).find('.save-spinner').show();
-            $(form).find('.save-btn').prop('disabled', true);
-        }
-        .result{
-
-        }
-    </script>
+        $('#total').text('Total Mark: ' + grandTotal);
+        $('#credit').text('Total Credit: ' + Totalcredit);
+        $('#gpa').text('Gpa: ' + gpa.toFixed(1));
 
 
+    });
+</script>
+//
+<script>
+    $(document).ready(function() {
+        $('#selected').change(function() {
+            var selectedValue = $(this).val();
+            $(this).children('option[value="' + selectedValue + '"]').remove();
+        });
+    });
+</script>

@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <!-- Theme style -->
+    <!-- CDN Link for Select2 CSS -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/css/select2.css')}}">
     <script src="{{ URL::asset('asset/js/initusablefunction.js') }}"></script>
     <script src="{{ URL::asset('asset/js/jquery-3.6.0.min.js') }}"></script>
 

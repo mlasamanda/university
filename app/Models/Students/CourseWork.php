@@ -16,6 +16,7 @@ class CourseWork extends Model
             ->join('courses', 'courses.id', '=', 'course_works.courseid')
             ->join('semesters', 'semesters.id', '=', 'course_works.semesterid')
             ->join('programmes', 'programmes.id', '=', 'course_works.programmeid')
+            ->join('users', 'users.id', '=', 'course_works.userid')
             ->select(['course_works.*', 'programmes.name as programme', 'semesters.name as semester', 'courses.name as ncourse',
                 'courses.code as ccode','courses.credit as ccredit','semesters.yOfStudy as syofstudy']);
 

@@ -47,7 +47,7 @@
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-align-justify"></i>
                     <p>
-                        Management
+                        Admin Management
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -64,6 +64,17 @@
                             <p>Role</p>
                         </a>
                     </li>
+                </ul>
+            <li class="nav-item">
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-align-justify"></i>
+                    <p>
+                        Hod Management
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{route('department.list')}}" class="nav-link">
                             <i class="fa fa-baby-carriage"></i>
@@ -81,12 +92,12 @@
                             <i class="fa fa-baby-carriage"></i>
                             <p>Course</p>
                         </a>
-                        <li class="nav-item">
-                            <a href="{{route('assign.course')}}" class="nav-link">
-                                <i class="fa fa-edit"></i>
-                                <p>Assign Course</p>
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="{{route('assign.course')}}" class="nav-link">
+                            <i class="fa fa-edit"></i>
+                            <p>Assign Course</p>
+                        </a>
+                    </li>
 
                 </ul>
             <li class="nav-item">

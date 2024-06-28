@@ -1,4 +1,3 @@
-
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -7,6 +6,7 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
@@ -55,6 +55,12 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
+<link rel="stylesheet" href="{{asset('asset/css/select2.css')}}">
+ <!-- CDN Link for jQuery (required for Select2) -->
+<script src="{{asset('asset/js/jquery-3.6.0.min.js')}}"></script>
+<!-- CDN Link for Select2 JS -->
+<script src="{{asset('asset/js/select2.js')}}"></script>
+<!-- Page specific script -->
 <script>
     $(function () {
         $("#example1").DataTable({
@@ -74,32 +80,45 @@
 </script>
 
 //check and uncheck
-    <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
+    function replicaterole() {
+        let replicateid = $('#replicate').val();
+        let name = $('#name').val();
+        let url = `{{route('role.create',isset($role)?$role->id:'')}}/?name=${name}&replicateid=${replicateid}`;
+        // console.log(url);
+        window.location.replace(url);
+    }
+
+    function checkitems(check) {
+        $('input:checkbox').prop('checked', check);
+    }
+
+    function menuchecked(menu) {
+        $(menu).closest('tr').find('input:checkbox').prop('checked', $(menu).is(':checked'));
+    }
+
+    function validateforminputs(form) {
+        $(form).find('.save-spinner').show();
+        $(form).find('.save-btn').prop('disabled', true);
+    }
+</script>
+<script>
+
+    $(document).ready(function () {
+        $('#selected').change(function () {
+            var selectedValue = $(this).val();
+            $(this).children('option[value="' + selectedValue + '"]').remove();
         });
-
-        function replicaterole() {
-            let replicateid = $('#replicate').val();
-            let name = $('#name').val();
-            let url = `{{route('role.create',isset($role)?$role->id:'')}}/?name=${name}&replicateid=${replicateid}`;
-            // console.log(url);
-            window.location.replace(url);
-        }
-
-        function checkitems(check) {
-            $('input:checkbox').prop('checked', check);
-        }
-
-        function menuchecked(menu) {
-            $(menu).closest('tr').find('input:checkbox').prop('checked', $(menu).is(':checked'));
-        }
-
-        function validateforminputs(form) {
-            $(form).find('.save-spinner').show();
-            $(form).find('.save-btn').prop('disabled', true);
-        }
-    </script>
-
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.form-select').select2();
+    });
+</script>
 

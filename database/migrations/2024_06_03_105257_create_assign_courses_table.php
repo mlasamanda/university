@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('programmeid')->nullable();
             $table->integer('courseid')->nullable();
             $table->integer('semesterid')->nullable();
+            $table->integer('userid')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

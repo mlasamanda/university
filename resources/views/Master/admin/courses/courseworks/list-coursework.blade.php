@@ -4,9 +4,10 @@
         <!-- /.card -->
         <div class="card">
             <div class="card-header">
-                <h2>{{$courseworks[0]->programme}}</h2>
-                <h3 class="card-title">Course List: <b>{{$courseworks[0]->semester}}</b>
-                                  <b>{{$courseworks[0]->syofstudy}}</b></h3>
+                <p>Registration Number: {{ session('user_regno')  }}</p>
+{{--                <h2>{{$courseworks[0]->programme}}</h2>--}}
+{{--                <h3 class="card-title">Course List: <b>{{$courseworks[0]->semester}}</b>--}}
+{{--                                  <b>{{$courseworks[0]->syofstudy}}</b></h3>--}}
                 @if(\Illuminate\Support\Facades\Auth::user()->roleid=1)
                     <li class="breadcrumb float-sm-right"><a href="{{route('coursework.create')}}">Add CourseWork</a>
                     </li>

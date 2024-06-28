@@ -39,9 +39,9 @@ class User extends Authenticatable
     {
         return DB::table('users', 'u')
             ->join('roles as r', 'r.id', '=', 'u.roleid')
-            ->join('permissions as p','p.id','=','u.permissionid')
-            ->join('departments as d', 'd.id', '=', 'u.departmentid')
-            ->select(['u.*', 'r.name as rolename','d.name as departmentname'])
+             ->join('departments as d', 'd.id', '=', 'u.departmentid')
+            ->join('programmes as pro', 'pro.id', '=', 'u.programmeid')
+            ->select(['u.*', 'r.name as rolename','d.name as departmentname','pro.name as pname'])
             ->selectRaw("concat(u.fname,' ',u.lname) as fullname")
             ->selectRaw("TIMESTAMPDIFF (YEAR, u.dob, CURDATE()) as age")
             ->orderBy("fullname");

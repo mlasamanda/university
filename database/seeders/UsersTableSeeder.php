@@ -21,6 +21,11 @@ class UsersTableSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('123456'),
                 'roleid'=>1,
+//                'programmeid'=>1,
+//                'departmentid'=>1,
+                'mobileno'=>'0785987184',
+                'gender'=>'male',
+                'dob'=>'1990-01-01',
                 'created_by' =>1,
                 'regno'=>'PFA-21-0045'
             ],
@@ -32,6 +37,9 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'roleid'=>2,
                 'created_by' =>1,
+                'mobileno'=>'0785987184',
+                'gender'=>'male',
+                'dob'=>'1990-01-01',
                 'regno'=>'PFA-21-0046'
             ],
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Master\Department;
@@ -29,8 +30,8 @@ class UserController extends Controller
     public function create()
     {
         //Gate::authorize('action',Permission::add_user);
-         $programmes=Programme::all();
         $departments = Department::all();
+        $programmes=Programme::all();
         $menus = Menu::query()->with(['submenus', 'permissions'])->get();
         $roles = Role::query()->where('id', '!=', 1)->get();
         return view('master.admin.users.users-create',compact('roles','programmes','departments','menus'));
@@ -69,8 +70,9 @@ class UserController extends Controller
         if(!$user) return back()->with('error','User not found');
         $roles = Role::all();
         $departments = Department::all();
+        $programmes=Programme::all();
         $menus = Menu::query()->with(['submenus', 'permissions'])->get();
-         return view('Master.admin.users.users-create',compact('roles','user','departments','menus'));
+         return view('Master.admin.users.users-create',compact('roles','user','departments','menus','programmes'));
     }
 
     public function store(UserRequest $request)
@@ -80,7 +82,8 @@ class UserController extends Controller
             $userarray['password'] = bcrypt('user123');
             $userarray['created_by'] = Auth::id();
             //Gate::authorize('action',Permission::add_user);
-            User::query()->create($userarray);
+            $user=User::query()->create($userarray);
+            event(new UserRegistered($user));
         } else {//update
             //Gate::authorize('action',Permission::edit_user);
             $user = User::query()->find($userarray['id']);
@@ -88,7 +91,7 @@ class UserController extends Controller
             $userarray['updated_by'] = Auth::id();
             $user->update($userarray);
         }
-        return redirect()->route('users')->with('success', 'User saved!');
+        return redirect()->route('users')->with('success', 'You have successfully created a new user!');
     }
 
     public function destroy(string $id)

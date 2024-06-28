@@ -5,9 +5,9 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">User List</h3>
-                @if(\Illuminate\Support\Facades\Gate::allows('action',\App\Models\Master\Permission::add_user))
+{{--                @if(\Illuminate\Support\Facades\Gate::allows('action',\App\Models\Master\Permission::add_user))--}}
                     <li class="breadcrumb float-sm-right"><a href="{{route('user.create')}}">Add User</a></li>
-                @endif
+{{--           @endif--}}
             </div>
             <!-- /.card-header -->
             <!-- /.card-header -->
@@ -25,10 +25,10 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Username</th>
-                        <th>Gender</th>
                         <th>Mobile</th>
                         <th>Role</th>
-                        <th>Department Name</th>
+                        <th>Department</th>
+                        <th>Programme</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -41,10 +41,10 @@
                             <td>{{$u->fullname}}</td>
                             <td>{{$u->email}}</td>
                             <td>{{$u->regno}}</td>
-                            <td>{{$u->gender}}</td>
                             <td>{{$u->mobileno}}</td>
                             <td>{{$u->rolename}}</td>
                             <td>{{$u->departmentname}}</td>
+                             <td>{{$u->pname}}</td>
                             <td>
                                 <form action="{{route('user.destroy',$u->id)}}" method="post" class="m-0 p-0"
                                       onsubmit="return confirm('Do you want to delete this role?')">
@@ -64,10 +64,10 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Username</th>
-                        <th>Gender</th>
                         <th>Mobile</th>
                         <th>Role</th>
-                        <th>Department Name</th>
+                        <th>Department</th>
+                        <th>Programme</th>
                         <th></th>
                     </tr>
                     </tfoot>

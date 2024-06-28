@@ -8,13 +8,15 @@ use App\Http\Requests\AssignCourseRequest;
 use App\Models\Master\Course;
  use App\Models\Master\Programme;
 use App\Models\Master\Semester;
- use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssignCourseController extends Controller
 {
-    public function assignCourse()
+    public function assignCourse(Request $request)
     {
-        $assignCourses = AssignCourse::list()->get();
+        $userid = $request->session()->get('userid');
+        $assignCourses = AssignCourse::list()->where('ac.userid',$userid)->get();
             return view('master.admin.courses.assigncourse.assigncourse-list',
                 compact('assignCourses'));
     }
@@ -42,6 +44,7 @@ class AssignCourseController extends Controller
         $departmentarray = $request->get('course');
         if (empty($departmentarray['id'])) {//new
             $departmentarray['created_by'] = Auth::id();
+            $departmentarray['userid']=$request->session()->get('userid');
             AssignCourse::query()->create($departmentarray);
         } else {//update
             $course = AssignCourse::query()->find($departmentarray['id']);

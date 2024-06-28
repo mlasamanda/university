@@ -16,9 +16,10 @@ class CourseWorkController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courseworks = CourseWork::list()->get();
+        $userid = $request->session()->get('userid');
+        $courseworks = CourseWork::list()->where('course_works.userid',$userid)->get();
         return view('Master.admin.courses.courseworks.list-coursework', compact('courseworks'));
     }
 
@@ -50,6 +51,7 @@ class CourseWorkController extends Controller
             if($departmentarray['name']>15) {
                 $departmentarray['status'] ="pass";
                 $departmentarray['created_by'] = Auth::id();
+                $departmentarray['userid'] =$request->session()->get('userid');
                 CourseWork::query()->create($departmentarray);
             }else{
                 $departmentarray['status'] ="Failed";

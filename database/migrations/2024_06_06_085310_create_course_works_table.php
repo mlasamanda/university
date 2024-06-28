@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('status')->nullable();
+            $table->string('userid')->nullable();
             $table->integer('programmeid')->nullable();
             $table->integer('courseid')->nullable();
             $table->integer('semesterid')->nullable();
